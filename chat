@@ -1,0 +1,50 @@
+<?php
+   define('SERVER', 'localhost');
+   define('S_USERNAME', 'root');
+   define('S_PASSWORD', 'roottoor');
+   define('N_DATABASE', 'facebook');
+   $conn = mysqli_connect(SERVER,S_USERNAME,S_PASSWORD,N_DATABASE);
+
+
+
+
+
+if ($conn->connect_error) {
+	
+  die("Connection failed: " . $conn->connect_error);
+}
+//echo "Connected successfully";
+$Message = ($_POST['mssg']);
+if ($Message != ""){
+$sql = "INSERT INTO chat (user2)
+VALUES ('$Message')";
+
+if ($conn->query($sql) === TRUE ) {
+echo "New record created successfully";}
+ else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}}
+
+$conn->close();
+
+
+?>
+<html >
+   
+   <head>
+      <title>chat </title>
+	  <style>form{}</style>
+   </head>
+   
+   <body style='background-color :black;color:green;' ><center> <h1>Secret chat</h1> </center>
+    <form action="" method='POST' style=''>
+	
+    <textarea name='mssg' class="form-control" id="exampleFormControlTextarea1" rows="3" style='color:red;width: 1510px; height: 108px;position: absolute; bottom: 33px; background-color: black'></textarea>
+	<br>
+	  <center>
+	    <button class="btn btn-primary" type = "submit" style="background-color: #0ed490;position: absolute; bottom: 7px; background-color: green">Send</button>
+      </center>
+	</form>
+   </body>
+   
+</html>
