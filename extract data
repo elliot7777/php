@@ -1,0 +1,7 @@
+   $USERNAME = 'root';
+   $PASSWORD = 'roottoor';
+   $database = new PDO('mysql:host=localhost;dbname=facebook;',$USERNAME,$PASSWORD);   
+   $yahya = $database -> prepare('select name from fbk');
+   $yahya ->execute();
+   $yahya = $yahya-> fetch(PDO::FETCH_ASSOC);
+   	echo '<h1>'. $yahya[name] . '</h1>';
