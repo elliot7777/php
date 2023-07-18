@@ -1,0 +1,31 @@
+
+<?php /// script for uploading tha images to database 
+// Connect to the database
+$servername = "localhost";
+$username = "root";
+$password = "password";
+$dbname = "moneris";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Get image data
+$image = file_get_contents("C:\Users\user\Desktop\s.jpg"); ///name of the file that you wanna upload 
+
+// Escape special characters in the image data
+$image = $conn->real_escape_string($image);
+
+// Insert image into database
+$sql = "INSERT INTO alvigt (Audio) VALUES ('$image')";
+if ($conn->query($sql) === TRUE) {
+  echo "Image inserted successfully";
+} else {
+  echo "Error inserting image: " . $conn->error;
+}
+
+// Close connection
+$conn->close();
+?>
