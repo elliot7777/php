@@ -1,0 +1,30 @@
+<?php
+// Step 1: Establish a connection to the MySQL database
+$servername = "localhost";
+$username = "root";
+$password = "password";
+$dbname = "moneris";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Step 2: Execute a SELECT query to retrieve the image data from the database
+$sql = "SELECT Audio FROM alvigt";
+$result = $conn->query($sql);
+
+// Step 3: Fetch the result of the query
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $imageData = $row['Audio'];
+
+    // Step 4: Display the image in an HTML <img> tag
+    echo '<img src="data:image/jpeg;base64,' . base64_encode($imageData) . '" alt="Image">';
+} else {
+    echo "Image not found.";
+}
+
+// Close the database connection
+$conn->close();
+?>
